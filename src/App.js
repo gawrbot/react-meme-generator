@@ -1,25 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Fetch from './Fetch';
 
-function App() {
+export default function App() {
+  const [topText, setTopText] = useState('');
+  const [bottomText, setBottomText] = useState('');
+  const [memeImage, setMemeImage] = useState('');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 className="headline">MEME GENERATOR</h1>
+      <br />
+      <label>
+        Top Text
+        <input
+          value={topText}
+          onChange={(event) => {
+            setTopText(event.currentTarget.value);
+          }}
+        />
+      </label>
+      <br />
+      <label>
+        Bottom Text
+        <input
+          value={bottomText}
+          onChange={(event) => {
+            setBottomText(event.currentTarget.value);
+          }}
+        />
+      </label>
+      <br />
+      <label>
+        Meme Background Image
+        <input
+          type="search"
+          value={memeImage}
+          onChange={(event) => {
+            setMemeImage(event.currentTarget.value);
+          }}
+        />
+      </label>
+      {/* <Fetch /> */}
     </div>
   );
 }
-
-export default App;
