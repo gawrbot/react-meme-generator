@@ -2,12 +2,8 @@ body {
   text-align: center;
   display: flex;
   justify-content: center;
-  background-color: chocolate;
+  background-color: tomato;
   color: #ffffff;
-}
-
-.headline {
-  text-align: center;
 }
 
 /* .App-header {
