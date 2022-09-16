@@ -1,80 +1,137 @@
 import './App.css';
+import { saveAs } from 'file-saver';
 import { useState } from 'react';
 import MemeData from './MemeDatabase';
 
 export default function App() {
   const [topText, setTopText] = useState('Welcome');
-  const [bottomText, setBottomText] = useState('to meme world');
-  const [memeImage, setMemeImage] = useState('spongebob');
+  const [bottomText, setBottomText] = useState('To The Internet');
+  const [memeImage, setMemeImage] = useState('doge');
   return (
-    <div>
-      <h1 style={{ textAlign: 'center' }}>MEME GENERATOR</h1>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <h1>MEME GENERATOR</h1>
       <br />
-      <label>
-        Top Text
-        <input
-          value={topText}
-          onChange={(event) => {
-            setTopText(event.currentTarget.value);
+      {/* Hot pink Background */}
+      <div
+        style={{
+          borderRadius: '5px',
+          padding: '20px 10px 20px',
+          backgroundColor: 'hotpink',
+        }}
+      >
+        {/* Input Fields */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
           }}
-        />
-      </label>
+        >
+          {/* Top Text Input */}
+          <label style={{ display: 'grid' }}>
+            Top Text
+            <input
+              style={{
+                borderRadius: '3px',
+                margin: '5px',
+              }}
+              value={topText}
+              onChange={(event) => {
+                setTopText(event.currentTarget.value);
+              }}
+            />
+          </label>
+          <br />
+          {/* Bottom Text Input */}
+          <label style={{ display: 'grid' }}>
+            Bottom Text
+            <input
+              style={{ borderRadius: '3px', margin: '5px' }}
+              value={bottomText}
+              onChange={(event) => {
+                setBottomText(event.currentTarget.value);
+              }}
+            />
+          </label>
+          <br />
+          {/* Meme Template Input */}
+          <label style={{ display: 'grid' }}>
+            Meme Template
+            <input
+              style={{ borderRadius: '3px', margin: '5px' }}
+              list="memes"
+              value={memeImage}
+              onChange={(event) => {
+                setMemeImage(event.currentTarget.value.toLowerCase());
+              }}
+            />
+            <datalist id="memes">
+              <MemeData />
+            </datalist>
+          </label>
+        </div>
+        <br />
+        {/* Generate Button */}
+        <button
+          style={{
+            display: 'block',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: 15,
+            margin: '0 auto',
+            backgroundColor: 'purple',
+            color: 'white',
+            borderColor: 'white',
+            borderRadius: 50,
+          }}
+          onClick={() => {
+            <img
+              data-test-id="meme-image"
+              alt="Meme"
+              src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`}
+            />;
+          }}
+        >
+          Generate
+        </button>
+      </div>
       <br />
-      <label>
-        Bottom Text
-        <input
-          value={bottomText}
-          onChange={(event) => {
-            setBottomText(event.currentTarget.value);
-          }}
-        />
-      </label>
-      <br />
-      <label>
-        Meme Template
-        <input
-          list="memes"
-          value={memeImage}
-          onChange={(event) => {
-            setMemeImage(event.currentTarget.value.toLowerCase());
-          }}
-        />
-        <datalist id="memes">
-          <option>Keanu</option>
-          <option>Spongebob</option>
-          <option>Bender</option>
-          <option>Fry</option>
-          <MemeData />
-        </datalist>
-      </label>
+      {/* Image and Download Button */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           margin: 20,
           padding: 20,
+          alignItems: 'center',
         }}
       >
-        {/* Image Element */}
-        {/* <img
-          data-test-id="meme-image"
-          alt="Meme"
-          src={`https://api.memegen.link/images/${memeImage}.jpg`}
-        /> */}
         <img
           data-test-id="meme-image"
           alt="Meme"
           src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`}
         />
+        <br />
+        {/* Download Button */}
+        <button
+          style={{
+            display: 'block',
+            justifyContent: 'center',
+            fontSize: 30,
+            margin: '0 auto',
+            backgroundColor: 'tomato',
+            color: 'white',
+            borderColor: 'white',
+          }}
+          onClick={() => {
+            saveAs(
+              `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`,
+              `${memeImage}/${topText}/${bottomText}.jpg`,
+            );
+          }}
+        >
+          Download
+        </button>
       </div>
     </div>
   );
 }
-
-// Bild von hier:
-// https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg
-// const downloadAndSaveCustomMeme = async (url, folder, path) => {
-// const imgToGet = await fetch('https://api.memegen.link/images/bender/memes/memes_everywhere.jpg');
-// const arrayBuffer = await imgToGet.arrayBuffer();
-// const buffer = Buffer.from(arrayBuffer);
-// console.log(buffer)
