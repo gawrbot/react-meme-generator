@@ -7,7 +7,7 @@ import Select from 'react-select';
 // import MemeData from './MemeDatabase';
 
 export default function App() {
-  const [topText, setTopText] = useState("it's ugly");
+  const [topText, setTopText] = useState('its ugly');
   const [bottomText, setBottomText] = useState('but its working');
   const [post, setPost] = useState([]);
   const [memeImage, setMemeImage] = useState('feelsgood');
