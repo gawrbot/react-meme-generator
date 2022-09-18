@@ -121,7 +121,15 @@ export default function App() {
         <img
           data-test-id="meme-image"
           alt="Meme"
-          src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`}
+          src={
+            `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg` ||
+            `https://api.memegen.link/images/${memeImage}/${topText}.jpg` ||
+            `https://api.memegen.link/images/${memeImage}/${bottomText}.jpg` ||
+            `https://api.memegen.link/images/${topText}/${bottomText}.jpg` ||
+            `https://api.memegen.link/images/${memeImage}.jpg` ||
+            `https://api.memegen.link/images/${topText}.jpg` ||
+            `https://api.memegen.link/images/${bottomText}.jpg`
+          }
         />
         <br />
         {/* Download Button */}
