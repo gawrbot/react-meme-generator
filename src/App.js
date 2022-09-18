@@ -54,7 +54,7 @@ export default function App() {
         >
           {/* Top Text Input */}
           <label style={{ display: 'grid' }}>
-            Top Text
+            Top text
             <input
               style={{
                 borderRadius: '3px',
@@ -69,7 +69,7 @@ export default function App() {
           <br />
           {/* Bottom Text Input */}
           <label style={{ display: 'grid' }}>
-            Bottom Text
+            Bottom text
             <input
               style={{ borderRadius: '3px', margin: '5px' }}
               value={bottomText}
@@ -81,7 +81,10 @@ export default function App() {
           <br />
           {/* Meme Template Input */}
         </div>
+        <br />
+        <label htmlFor="memeOptions">Meme template</label>
         <Select
+          id="memeOptions"
           options={post}
           value={memeImage}
           onChange={(option) => setMemeImage(option.value)}
