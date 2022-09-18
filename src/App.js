@@ -1,12 +1,38 @@
 import './App.css';
+import axios from 'axios';
 import { saveAs } from 'file-saver';
-import { useState } from 'react';
-import MemeData from './MemeDatabase';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
+
+// import MemeData from './MemeDatabase';
 
 export default function App() {
-  const [topText, setTopText] = useState('Welcome');
-  const [bottomText, setBottomText] = useState('To The Internet');
-  const [memeImage, setMemeImage] = useState('doge');
+  const [topText, setTopText] = useState("it's ugly");
+  const [bottomText, setBottomText] = useState('but its working');
+  const [post, setPost] = useState([]);
+  const [memeImage, setMemeImage] = useState('feelsgood');
+  function MemeData() {
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get(
+            'https://api.memegen.link/templates/',
+          );
+
+          const memes = data.map((item) => {
+            return { value: item.id, label: item.name };
+          });
+          setPost(memes);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData().catch((err) => console.log(err));
+    }, []);
+
+    return post;
+  }
+  MemeData();
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <h1>MEME GENERATOR</h1>
@@ -54,24 +80,15 @@ export default function App() {
           </label>
           <br />
           {/* Meme Template Input */}
-          <label style={{ display: 'grid' }}>
-            Meme Template
-            <input
-              style={{ borderRadius: '3px', margin: '5px' }}
-              list="memes"
-              value={memeImage}
-              onChange={(event) => {
-                setMemeImage(event.currentTarget.value.toLowerCase());
-              }}
-            />
-            <datalist id="memes">
-              <MemeData />
-            </datalist>
-          </label>
         </div>
+        <Select
+          options={post}
+          value={memeImage}
+          onChange={(option) => setMemeImage(option.value)}
+        />
         <br />
-        {/* Generate Button */}
-        <button
+        {/* Generate Button --> not working*/}
+        {/* <button
           style={{
             display: 'block',
             justifyContent: 'center',
@@ -83,16 +100,9 @@ export default function App() {
             borderColor: 'white',
             borderRadius: 50,
           }}
-          onClick={() => {
-            <img
-              data-test-id="meme-image"
-              alt="Meme"
-              src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`}
-            />;
-          }}
-        >
+          >
           Generate
-        </button>
+        </button> */}
       </div>
       <br />
       {/* Image and Download Button */}
