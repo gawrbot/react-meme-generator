@@ -7,10 +7,10 @@ import Select from 'react-select';
 // import MemeData from './MemeDatabase';
 
 export default function App() {
-  const [topText, setTopText] = useState('its ugly');
-  const [bottomText, setBottomText] = useState('but its working');
+  const [topText, setTopText] = useState('');
+  const [bottomText, setBottomText] = useState('');
   const [post, setPost] = useState([]);
-  const [memeImage, setMemeImage] = useState('feelsgood');
+  const [memeImage, setMemeImage] = useState('');
   function MemeData() {
     useEffect(() => {
       const fetchData = async () => {
@@ -118,19 +118,23 @@ export default function App() {
           alignItems: 'center',
         }}
       >
-        <img
-          data-test-id="meme-image"
-          alt="Meme"
-          src={
-            `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg` ||
-            `https://api.memegen.link/images/${memeImage}/${topText}.jpg` ||
-            `https://api.memegen.link/images/${memeImage}/${bottomText}.jpg` ||
-            `https://api.memegen.link/images/${topText}/${bottomText}.jpg` ||
-            `https://api.memegen.link/images/${memeImage}.jpg` ||
-            `https://api.memegen.link/images/${topText}.jpg` ||
-            `https://api.memegen.link/images/${bottomText}.jpg`
-          }
-        />
+        <div>
+          {memeImage.length === 0 ||
+          bottomText.length === 0 ||
+          memeImage.length === 0 ? (
+            <img
+              data-test-id="meme-image"
+              alt="preview"
+              src="https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg"
+            />
+          ) : (
+            <img
+              data-test-id="meme-image"
+              alt="Meme"
+              src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`}
+            />
+          )}
+        </div>
         <br />
         {/* Download Button */}
         <button
