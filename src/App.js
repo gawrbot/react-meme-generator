@@ -60,7 +60,7 @@ export default function App() {
                 borderRadius: '3px',
                 margin: '5px',
               }}
-              value={topText.replace('%20', '_')}
+              value={topText}
               onChange={(event) => {
                 setTopText(event.currentTarget.value);
               }}
@@ -72,7 +72,7 @@ export default function App() {
             Bottom text
             <input
               style={{ borderRadius: '3px', margin: '5px' }}
-              value={bottomText.replace('%20', '_')}
+              value={bottomText}
               onChange={(event) => {
                 setBottomText(event.currentTarget.value);
               }}
@@ -86,7 +86,7 @@ export default function App() {
         <Select
           id="memeOptions"
           options={post}
-          value={memeImage.replace('%20', '_')}
+          value={memeImage}
           onChange={(option) => setMemeImage(option.value)}
         />
         <br />
@@ -123,13 +123,16 @@ export default function App() {
             <img
               data-test-id="meme-image"
               alt="Meme"
-              src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`}
+              src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`.replace(
+                '%20',
+                '_',
+              )}
             />
           ) : (
             <img
               data-test-id="meme-image"
               alt="preview"
-              src={`https://api.memegen.link/images/${memeImage}/it's_so_ugly/but_it's_working.jpg`}
+              src={`https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg`}
             />
           )}
         </div>
@@ -148,11 +151,14 @@ export default function App() {
           onClick={() => {
             topText.length > 0 || bottomText.length > 0
               ? saveAs(
-                  `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`,
+                  `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`.replace(
+                    '%20',
+                    '_',
+                  ),
                   `${memeImage}/${topText}/${bottomText}.jpg`,
                 )
               : saveAs(
-                  `https://api.memegen.link/images/feelsgood/ it's_so_ugly/but_it's_working.jpg`,
+                  `https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg`,
                   "feelsgood/it's_so_ugly/but_it's_working.jpg",
                 );
           }}
