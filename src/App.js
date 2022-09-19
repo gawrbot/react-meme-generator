@@ -10,7 +10,7 @@ export default function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [post, setPost] = useState([]);
-  const [memeImage, setMemeImage] = useState('');
+  const [memeImage, setMemeImage] = useState('feelsgood');
   function MemeData() {
     useEffect(() => {
       const fetchData = async () => {
@@ -154,7 +154,7 @@ export default function App() {
                   `${memeImage}/${topText}/${bottomText}.jpg`,
                 )
               : saveAs(
-                  "https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg",
+                  `https://api.memegen.link/images/${memeImage}/it's_so_ugly/but_it's_working.jpg`,
                   "feelsgood/it's_so_ugly/but_it's_working.jpg",
                 );
           }}
