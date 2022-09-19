@@ -119,9 +119,7 @@ export default function App() {
         }}
       >
         <div>
-          {memeImage.length === 0 &&
-          bottomText.length === 0 &&
-          topText.length === 0 ? (
+          {memeImage.length === 0 ? (
             <img
               data-test-id="meme-image"
               alt="preview"
