@@ -60,7 +60,7 @@ export default function App() {
                 borderRadius: '3px',
                 margin: '5px',
               }}
-              value={topText}
+              value={topText + '/'}
               onChange={(event) => {
                 setTopText(event.currentTarget.value);
               }}
@@ -86,7 +86,7 @@ export default function App() {
         <Select
           id="memeOptions"
           options={post}
-          value={memeImage}
+          value={memeImage + '/'}
           onChange={(option) => setMemeImage(option.value)}
         />
         <br />
@@ -118,11 +118,11 @@ export default function App() {
           alignItems: 'center',
         }}
       >
-        {topText.length > 0 || bottomText.length > 0 || memeImage.length > 0 ? (
+        {topText.length > 0 || bottomText.length > 0 ? (
           <img
             data-test-id="meme-image"
             alt="Meme"
-            src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`.replace(
+            src={`https://api.memegen.link/images/${memeImage}${topText}${bottomText}.jpg`.replace(
               '%20',
               '_',
             )}
@@ -148,10 +148,10 @@ export default function App() {
             borderColor: 'white',
           }}
           onClick={() => {
-            topText.length > 0 || bottomText.length > 0 || memeImage.length > 0
+            topText.length > 0 || bottomText.length > 0
               ? saveAs(
-                  `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`,
-                  `${memeImage}/${topText}/${bottomText}.jpg`,
+                  `https://api.memegen.link/images/${memeImage}${topText}${bottomText}.jpg`,
+                  `${memeImage}${topText}${bottomText}.jpg`,
                 )
               : saveAs(
                   `https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg`,
