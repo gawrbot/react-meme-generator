@@ -118,22 +118,31 @@ export default function App() {
           alignItems: 'center',
         }}
       >
-        {topText.length > 0 || bottomText.length > 0 || memeImage.length > 0 ? (
-          <img
-            data-test-id="meme-image"
-            alt="Meme"
-            src={`https://api.memegen.link/images/${memeImage + '/'}${
-              topText + '/'
-            }${bottomText}.jpg`.replace('%20', '_')}
-          />
-        ) : (
-          <img
-            data-test-id="meme-image"
-            alt="preview"
-            src={`https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg`}
-          />
-        )}
-
+        if {topText.length > 0 || bottomText.length > 0} (
+        <img
+          data-test-id="meme-image"
+          alt="Meme"
+          src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`.replace(
+            '%20',
+            '_',
+          )}
+        />
+        ) else if {memeImage.length > 0} (
+        <img
+          data-test-id="meme-image"
+          alt="Meme"
+          src={`https://api.memegen.link/images/${memeImage}.jpg`.replace(
+            '%20',
+            '_',
+          )}
+        />
+        ) else (
+        <img
+          data-test-id="meme-image"
+          alt="preview"
+          src={`https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg`}
+        />
+        )
         <br />
         {/* Download Button */}
         <button
@@ -149,9 +158,7 @@ export default function App() {
           onClick={() => {
             topText.length > 0 || bottomText.length > 0 || memeImage.length > 0
               ? saveAs(
-                  `https://api.memegen.link/images/${memeImage + '/'}${
-                    topText + '/'
-                  }${bottomText}.jpg`,
+                  `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`,
                   `${memeImage}${topText}${bottomText}.jpg`,
                 )
               : saveAs(
