@@ -10,7 +10,7 @@ export default function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [post, setPost] = useState([]);
-  const [memeImage, setMemeImage] = useState('doge');
+  const [memeImage, setMemeImage] = useState('feelsgood');
   function MemeData() {
     useEffect(() => {
       const fetchData = async () => {
