@@ -154,7 +154,7 @@ export default function App() {
                   `${memeImage}/${topText}/${bottomText}.jpg`,
                 )
               : saveAs(
-                  `https://api.memegen.link/images/${memeImage}/it's_so_ugly/but_it's_working.jpg`,
+                  `https://api.memegen.link/images/${memeImage}it's_so_ugly/but_it's_working.jpg`,
                   "feelsgood/it's_so_ugly/but_it's_working.jpg",
                 );
           }}
