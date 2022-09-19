@@ -119,17 +119,17 @@ export default function App() {
         }}
       >
         <div>
-          {memeImage.length === 0 ? (
-            <img
-              data-test-id="meme-image"
-              alt="preview"
-              src="https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg"
-            />
-          ) : (
+          {topText.length > 0 ? (
             <img
               data-test-id="meme-image"
               alt="Meme"
               src={`https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`}
+            />
+          ) : (
+            <img
+              data-test-id="meme-image"
+              alt="preview"
+              src="https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg"
             />
           )}
         </div>
