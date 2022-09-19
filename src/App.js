@@ -60,7 +60,7 @@ export default function App() {
                 borderRadius: '3px',
                 margin: '5px',
               }}
-              value={topText + '/'}
+              value={topText}
               onChange={(event) => {
                 setTopText(event.currentTarget.value);
               }}
@@ -86,7 +86,7 @@ export default function App() {
         <Select
           id="memeOptions"
           options={post}
-          value={memeImage + '/'}
+          value={memeImage}
           onChange={(option) => setMemeImage(option.value)}
         />
         <br />
@@ -122,10 +122,9 @@ export default function App() {
           <img
             data-test-id="meme-image"
             alt="Meme"
-            src={`https://api.memegen.link/images/${memeImage}${topText}${bottomText}.jpg`.replace(
-              '%20',
-              '_',
-            )}
+            src={`https://api.memegen.link/images/${memeImage + '/'}${
+              topText + '/'
+            }${bottomText}.jpg`.replace('%20', '_')}
           />
         ) : (
           <img
@@ -150,7 +149,9 @@ export default function App() {
           onClick={() => {
             topText.length > 0 || bottomText.length > 0
               ? saveAs(
-                  `https://api.memegen.link/images/${memeImage}${topText}${bottomText}.jpg`,
+                  `https://api.memegen.link/images/${memeImage + '/'}${
+                    topText + '/'
+                  }${bottomText}.jpg`,
                   `${memeImage}${topText}${bottomText}.jpg`,
                 )
               : saveAs(
