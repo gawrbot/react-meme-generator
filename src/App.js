@@ -146,10 +146,15 @@ export default function App() {
             borderColor: 'white',
           }}
           onClick={() => {
-            saveAs(
-              `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`,
-              `${memeImage}/${topText}/${bottomText}.jpg`,
-            );
+            topText.length > 0
+              ? saveAs(
+                  `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`,
+                  `${memeImage}/${topText}/${bottomText}.jpg`,
+                )
+              : saveAs(
+                  "https://api.memegen.link/images/feelsgood/it's_so_ugly/but_it's_working.jpg",
+                  "feelsgood/it's_so_ugly/but_it's_working.jpg",
+                );
           }}
         >
           Download
