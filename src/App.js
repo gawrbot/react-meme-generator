@@ -10,7 +10,7 @@ export default function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [post, setPost] = useState([]);
-  const [memeImage, setMemeImage] = useState('');
+  const [memeImage, setMemeImage] = useState('doge');
   function MemeData() {
     useEffect(() => {
       const fetchData = async () => {
@@ -60,7 +60,7 @@ export default function App() {
                 borderRadius: '3px',
                 margin: '5px',
               }}
-              value={topText}
+              value={topText.replace('%20', '_')}
               onChange={(event) => {
                 setTopText(event.currentTarget.value);
               }}
@@ -72,7 +72,7 @@ export default function App() {
             Bottom text
             <input
               style={{ borderRadius: '3px', margin: '5px' }}
-              value={bottomText}
+              value={bottomText.replace('%20', '_')}
               onChange={(event) => {
                 setBottomText(event.currentTarget.value);
               }}
@@ -86,7 +86,7 @@ export default function App() {
         <Select
           id="memeOptions"
           options={post}
-          value={memeImage}
+          value={memeImage.replace('%20', '_')}
           onChange={(option) => setMemeImage(option.value)}
         />
         <br />
