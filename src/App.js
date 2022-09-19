@@ -119,7 +119,9 @@ export default function App() {
         }}
       >
         <div>
-          {topText.length > 0 || bottomText.length > 0 ? (
+          {topText.length > 0 ||
+          bottomText.length > 0 ||
+          memeImage.length > 0 ? (
             <img
               data-test-id="meme-image"
               alt="Meme"
@@ -149,7 +151,7 @@ export default function App() {
             borderColor: 'white',
           }}
           onClick={() => {
-            topText.length > 0 || bottomText.length > 0
+            topText.length > 0 || bottomText.length > 0 || memeImage.length > 0
               ? saveAs(
                   `https://api.memegen.link/images/${memeImage}/${topText}/${bottomText}.jpg`.replace(
                     '%20',
